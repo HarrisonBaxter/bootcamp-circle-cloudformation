@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
       - image: adambene/circleci-openjdk-awscli
     working_directory: ~/bootcamp-circle-cloudformation
@@ -10,19 +10,19 @@ jobs:
 
   deploy-job:
    docker:
-    - image: adambene/circleci-openjdk-awscli
+     - image: adambene/circleci-openjdk-awscli
     working_directory: ~/bootcamp-circle-cloudformation
-     steps:
+    steps:
       - checkout
       - run:
-        name: Deploy to s3 if the tests all pass on the master branch
-        command: ./build-and-deploy-to-aws.sh harrison-autoscaling-InstanceSecurityGroup-1R6VK3VUYKESY harrison
+         name: Deploy to s3 if the tests all pass on the master branch
+         command: ./build-and-deploy-to-aws.sh harrison-autoscaling-InstanceSecurityGroup-1R6VK3VUYKESY harrison
 
 workflows:
   version: 2
   test-and-deploy:
     jobs:
-     - build
+     - test
      - deploy-job:
         requires:
          - build:
