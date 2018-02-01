@@ -22,11 +22,12 @@ workflows:
   version: 2
   test-and-deploy:
     jobs:
-      - test
-      - deploy:
-          requires:
-            - build:
-                filters:
-                  branches:
-                    only: master
+          - test
+          - deploy:
+              filters:
+                branches:
+                  only:
+                    - master
+              requires:
+                - test
 
