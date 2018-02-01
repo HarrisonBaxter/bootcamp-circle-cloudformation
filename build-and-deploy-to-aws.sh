@@ -9,8 +9,8 @@ Deploys the app to a specified Auto Scaling Group. Procedure:
 5. Terminates the old instances
 
 Arguments:
-- $1 = ASG name (required)
-- $2 = S3 prefix (required)
+- $1 = harrison-autoscaling-InstanceSecurityGroup-1R6VK3VUYKESY
+- $2 = harrison
 
 The S3 prefix should match the parameter you pass to CloudFormation when creating the Auto Scaling Group.
 

@@ -7,3 +7,25 @@ jobs:
     steps:
       - checkout
       - run: sbt test
+
+  deploy-job:
+   docker:
+    - image: adambene/circleci-openjdk-awscli
+    working_directory: ~/bootcamp-circle-cloudformation
+     steps:
+      - run:
+        name: Deploy to s3 if the tests all pass on the master branch
+        command: ./build-and-deploy-to-aws.sh
+
+workflows:
+  version: 2
+  test-and-deploy:
+    jobs:
+     - build
+     - deploy-job:
+        requires:
+         - build:
+            filters:
+             branches:
+              only: master
+
