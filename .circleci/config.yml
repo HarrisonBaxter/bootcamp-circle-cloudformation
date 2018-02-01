@@ -13,9 +13,10 @@ jobs:
     - image: adambene/circleci-openjdk-awscli
     working_directory: ~/bootcamp-circle-cloudformation
      steps:
+      - checkout
       - run:
         name: Deploy to s3 if the tests all pass on the master branch
-        command: ./build-and-deploy-to-aws.sh
+        command: ./build-and-deploy-to-aws.sh harrison-autoscaling-InstanceSecurityGroup-1R6VK3VUYKESY harrison
 
 workflows:
   version: 2
