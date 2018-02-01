@@ -7,7 +7,6 @@ jobs:
     steps:
       - checkout
       - run: sbt test
-
   deploy:
     docker:
       - image: adambene/circleci-openjdk-awscli
@@ -20,12 +19,11 @@ workflows:
   version: 2
   test-and-deploy:
     jobs:
-          - test
-          - deploy:
-              filters:
-                branches:
-                  only:
-                    - master
-              requires:
-                - test
-
+      - test
+      - deploy:
+          filters:
+            branches:
+              only:
+                - master
+          requires:
+            - test
